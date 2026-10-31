@@ -1,0 +1,5 @@
+node_modules/
+logs/
+responsive-out/
+figma-clone-harness/
+.DS_Store

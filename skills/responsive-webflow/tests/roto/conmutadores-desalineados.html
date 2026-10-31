@@ -1,0 +1,22 @@
+<!doctype html><meta charset=utf-8><title>caso roto</title>
+<!--
+  Caso roto a proposito, para probar que el gate sabe fallar.
+  La nav conmuta en 991 y los juegos de seccion en 767. Entre 768 y 991 el sitio sirve la nav de
+  escritorio sobre las secciones de movil: es el fallo de "dos barras a la vez" descrito en
+  reglas-de-sistema.md:168-170, y un gate de pares 767/768 no lo ve.
+-->
+<style>
+  *{box-sizing:border-box} body{margin:0;font:14px system-ui}
+  .nav-esc,.nav-mov{height:56px;background:#123;color:#fff;padding:16px}
+  .sec-esc,.sec-mov{height:400px;background:#eef;padding:24px}
+  /* nav: conmuta en 991 */
+  .nav-esc{display:none} .nav-mov{display:block}
+  @media (min-width:992px){ .nav-esc{display:block} .nav-mov{display:none} }
+  /* secciones: conmutan en 767 — DESALINEADO respecto de la nav */
+  .sec-esc{display:none} .sec-mov{display:block}
+  @media (min-width:768px){ .sec-esc{display:block} .sec-mov{display:none} }
+</style>
+<header class=nav-esc>nav escritorio</header>
+<header class=nav-mov>nav movil</header>
+<section class=sec-esc>secciones escritorio</section>
+<section class=sec-mov>secciones movil</section>

@@ -1,0 +1,113 @@
+{
+ "_": "Plantilla de responsive-webflow. Copiar a la raiz del proyecto del cliente. Si ya existe un harness.config.json de clone-to-webflow subiendo desde el cwd, ese se lee y este archivo no hace falta.",
+ "cliente": "caso-roto",
+ "sitio": {
+  "staging": "https://ejemplo.webflow.io",
+  "paginas": [
+   ""
+  ]
+ },
+ "modo": {
+  "_": "unidad | nativo | mixto | auto. En 'auto' lo decide perfil.mjs leyendo el HTML servido; el veredicto se propone, no se impone.",
+  "regimen": "auto"
+ },
+ "bandas": {
+  "_": "Cada banda declara su frame ancla y el rango de anchos que gobierna. 'hereda' se usa cuando la banda NO tiene frame propio: hay que declararlo, no improvisarlo (reglas-de-sistema: tablet no es escritorio encogido).",
+  "movil": {
+   "frame": 390,
+   "min": 320,
+   "max": 767,
+   "hereda": null
+  },
+  "tablet": {
+   "frame": 768,
+   "min": 768,
+   "max": 1199,
+   "hereda": null
+  },
+  "escritorio": {
+   "frame": 1440,
+   "min": 1200,
+   "max": 1920,
+   "hereda": null
+  }
+ },
+ "gates": {
+  "_": "desborde se mide RECORRIENDO la pagina, nunca en reposo. banda son pares [antes, despues] del corte: el salto se mide entre los dos.",
+  "desborde": [
+   320,
+   390,
+   479,
+   767,
+   991,
+   1280,
+   1440,
+   1920
+  ],
+  "escalado": [
+   360,
+   390,
+   430,
+   768,
+   834,
+   1024,
+   1194,
+   1200,
+   1280,
+   1366,
+   1440,
+   1728,
+   2048,
+   2560,
+   3440
+  ],
+  "banda": [
+   [
+    478,
+    480
+   ],
+   [
+    766,
+    768
+   ],
+   [
+    990,
+    992
+   ],
+   [
+    1199,
+    1200
+   ]
+  ],
+  "toleranciaBanda": 4
+ },
+ "conmutadores": {
+  "_": "Los tres tienen que compartir el mismo numero o salen dos barras a la vez. 'nativos' son los cortes que Webflow permite en whtml_builder; cualquier otro corte tiene que estar en 'declarados' o el gate falla.",
+  "nativos": [
+   991,
+   767,
+   479
+  ],
+  "declarados": [
+   1199
+  ]
+ },
+ "selectores": {
+  "_": "Piezas de referencia. cuerpo* es el texto de lectura cuyo tamano NO debe crecer por encima del frame ancla. navEscritorio/navMovil sirven para detectar dos barras a la vez en el corte.",
+  "seccionEscritorio": ".sec-esc",
+  "seccionMovil": ".sec-mov",
+  "cuerpoEscritorio": "",
+  "cuerpoMovil": "",
+  "navEscritorio": ".nav-esc",
+  "navMovil": ".nav-mov",
+  "centrado": {}
+ },
+ "estetica": {
+  "_": "Umbrales de la rubrica responsiva. medida = caracteres por linea del texto de lectura.",
+  "medidaMin": 45,
+  "medidaMax": 75,
+  "medidaTope": 100,
+  "toleranciaRazon": 0.15
+ },
+ "salida": "responsive-out"
+}

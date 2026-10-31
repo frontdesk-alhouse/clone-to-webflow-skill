@@ -1,0 +1,4 @@
+{ "anchos": { "movil": 390, "tablet": 820, "escritorio": 1440 },
+  "paginas": { "home": { "secciones": [
+  { "id": "hero", "sel": "#hero", "debe": { "390": "revelado", "820": "revelado", "1440": "revelado" } }
+] } } }

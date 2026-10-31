@@ -1,0 +1,14 @@
+<!doctype html><meta charset=utf-8><title>caso roto · discontinuidad</title>
+<!-- Pagina fluida de pendiente .8 (el texto mide 80vw) con UNA regla colada entre 900 y 1099 que
+     le suma 32 px. No hay media query declarada en 900 ni en 1100: es el override suelto que
+     alguien dejo. La regla vieja (salto > 3 x mediana) NO lo veia: 32 < 80. Esta tiene que verlo. -->
+<style>
+  *{box-sizing:border-box} body{margin:0;padding:24px 0}
+  section{padding:24px 10vw}
+  p{margin:0 auto;width:80vw;font:16px/1.5 system-ui;background:#eef;padding:12px}
+  @media (min-width:768px){ body{background:#fafafa} }
+  @media (min-width:900px) and (max-width:1099px){ p{width:calc(80vw + 32px)} }
+</style>
+<section><h1>titular largo para que cuente como bloque de texto de mas de veinte caracteres</h1>
+<p>Parrafo de lectura largo, con suficiente texto para que el barrido lo elija como bloque seguido y mida su ancho en cada paso del recorrido de trescientos veinte a dos mil quinientos sesenta pixeles.</p>
+<p>Segundo parrafo, mismo ancho, para que haya mas de un candidato en cada extremo del rango.</p></section>

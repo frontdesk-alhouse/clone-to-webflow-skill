@@ -1,0 +1,26 @@
+{
+  "name": "clone-to-webflow-harness",
+  "private": true,
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Clone-to-Webflow \u2014 motor portatil de paridad visual y gates (referencia de Figma vs build de Webflow)",
+  "scripts": {
+    "test": "npm run selftest && npm run test:radios && npm run test:gates && npm run test:playbook",
+    "selftest": "node scripts/selftest.mjs",
+    "diff": "node scripts/diff.mjs",
+    "capture": "node scripts/capture.mjs",
+    "test:radios": "cd tests/roto/orden && node ../../radios-anidados.test.mjs",
+    "test:gates": "node tests/gates-roto.mjs",
+    "test:playbook": "node tests/playbook.test.mjs"
+  },
+  "dependencies": {
+    "pixelmatch": "^7.2.0",
+    "playwright": "^1.62.1",
+    "pngjs": "^7.0.0",
+    "sharp": "^0.35.3",
+    "htmlparser2": "^10.0.0",
+    "css-select": "^5.2.2",
+    "css-tree": "^3.1.0",
+    "domutils": "^3.2.2"
+  }
+}

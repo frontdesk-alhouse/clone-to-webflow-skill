@@ -1,0 +1,17 @@
+<!doctype html><meta charset=utf-8><title>caso roto · orden de secciones</title>
+<!-- El DOM declara hero, cifra, faq. El CSS los invierte con `order` en un flex de columna, y la
+     seccion `cifra` va envuelta en un .w-embed como hace Webflow con lo que el motion fija: el
+     `order` esta puesto en la SECCION, no en el envoltorio, asi que no surte efecto ahi y la
+     cifra acaba donde caiga el envoltorio. Un gate que lea el DOM dice "ok"; uno que mida y dice
+     lo que ve el usuario. -->
+<style>
+  *{box-sizing:border-box} body{margin:0;display:flex;flex-direction:column}
+  section{min-height:400px;padding:24px}
+  .hero{background:#eef;order:3}
+  .w-embed{display:contents}
+  .cifra{background:#efe;order:2}
+  .faq{background:#fee;order:1}
+</style>
+<section class="hero"><h1>hero</h1></section>
+<div class="w-embed"><section class="cifra"><h2>cifra</h2></section></div>
+<section class="faq"><h2>faq</h2></section>

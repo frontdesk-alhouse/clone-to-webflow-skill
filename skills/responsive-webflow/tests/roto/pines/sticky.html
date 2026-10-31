@@ -1,0 +1,19 @@
+<!doctype html><html><head><meta charset="utf-8"><title>sticky</title><style>
+*{box-sizing:border-box;margin:0}
+/* el mismo regimen que Cliente A: por debajo del frame, el body se encoge con zoom */
+@media (min-width:1200px){body{zoom:min(calc(100vw / 1440px),1)}}
+section{min-height:900px;padding:80px;font:16px/1.4 system-ui}
+.antes{background:#e8edf5}.despues{background:#d9e2ee}
+.pista{position:relative;height:2700px}
+.pin{height:900px;width:100%;max-width:1440px;margin:0 auto;background:#12213a;color:#fff;overflow:hidden}
+.escena{width:1280px;max-width:100%;margin:0 auto;padding:120px 0}
+.escena p{width:520px}
+.foto{width:400px;height:240px;background:#35507a;position:relative;margin-top:40px}
+.tecla{position:absolute;right:16px;bottom:16px;width:64px;height:40px;background:#fff}
+.pin{position:sticky;top:0}
+</style></head><body>
+<section class="antes"><h1>antes</h1></section>
+<div class="pista"><div class="pin"><div class="escena"><h2>Escena fijada</h2><p class="desc">Texto de la escena que no puede salir recortado a ningun ancho.</p><div class="foto"><div class="tecla"></div></div></div></div></div>
+<section class="despues"><h1>despues</h1></section>
+
+</body></html>

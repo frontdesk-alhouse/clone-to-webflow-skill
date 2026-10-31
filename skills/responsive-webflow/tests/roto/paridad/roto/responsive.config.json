@@ -1,0 +1,36 @@
+{
+ "cliente": "caso-paridad",
+ "sitio": {
+  "staging": "https://ejemplo.webflow.io",
+  "paginas": [
+   "pagina.html"
+  ]
+ },
+ "modo": {
+  "regimen": "auto"
+ },
+ "bandas": {
+  "movil": {
+   "frame": 390,
+   "min": 320,
+   "max": 767,
+   "hereda": null
+  },
+  "tablet": {
+   "frame": 768,
+   "min": 768,
+   "max": 1199,
+   "hereda": null
+  },
+  "escritorio": {
+   "frame": 1440,
+   "min": 1200,
+   "max": 1920,
+   "hereda": null
+  }
+ },
+ "paridad": {
+  "esperaCarga": 100
+ },
+ "salida": "responsive-out"
+}

@@ -1,0 +1,241 @@
+{
+  "_": "Plantilla de Clone-to-Webflow. Copiar a la raiz del proyecto del cliente y rellenar. Es lo UNICO que cambia entre clientes.",
+  "cliente": "NOMBRE",
+  "webflow": {
+    "siteId": "24-hex-de-data_sites_tool>list_sites",
+    "shortName": "mi-sitio",
+    "staging": "https://mi-sitio.webflow.io",
+    "produccion": [
+      "midominio.com",
+      "www.midominio.com"
+    ],
+    "sitePlan": "pago"
+  },
+  "figma": {
+    "fileKey": "",
+    "paginaBuild": "",
+    "frames": {
+      "1440": "",
+      "768": "",
+      "390": ""
+    },
+    "framesPorPagina": {
+      "_": "Playbook por bandas: los TRES frames de CADA pagina, por etiqueta (home = la raiz). Sin esta clave playbook.mjs cae a `frames` y avisa de que el chequeo es del sitio, no de la pagina. `aprueba figma` se niega si falta uno.",
+      "home": {
+        "1440": "",
+        "768": "",
+        "390": ""
+      },
+      "pricing": {
+        "1440": "",
+        "768": "",
+        "390": ""
+      }
+    },
+    "coleccionTokens": ""
+  },
+  "prefijo": "xx",
+  "paginas": [
+    "",
+    "pricing"
+  ],
+  "anchos": [
+    390,
+    768,
+    1440
+  ],
+  "gates": {
+    "desborde": [
+      390,
+      479,
+      767,
+      991,
+      1280,
+      1440,
+      1920
+    ],
+    "escalado": [
+      360,
+      390,
+      430,
+      768,
+      834,
+      1024,
+      1194,
+      1200,
+      1280,
+      1366,
+      1440,
+      1728,
+      2048,
+      2560,
+      3440
+    ],
+    "banda": [
+      [
+        767,
+        768
+      ],
+      [
+        1199,
+        1200
+      ]
+    ],
+    "_desborde": "LISTA DE RESPALDO. Si existe responsive-out/plan-anchos.json (derivado por responsive-webflow del barrido + cortes + contrato), gate-desborde usa ese y lo dice; sin plan cae a esta lista y dice POR_DEFECTO en voz alta."
+  },
+  "selectores": {
+    "_": "Piezas de referencia para los medidores. seccionEscritorio/Movil es contra lo que se mide el centrado; cuerpo* es el texto cuyo tamano no debe crecer por encima del tope.",
+    "seccionEscritorio": "",
+    "seccionMovil": "",
+    "cuerpoEscritorio": "",
+    "cuerpoMovil": "",
+    "centrado": {},
+    "capas": [],
+    "_capas": "Pares de elementos que se dibujan uno sobre otro y no deben desalinearse: [ { \"a\": \".fondo\", \"b\": \".frente\", \"eje\": \"left\" } ]. eje = left|top|right|bottom|width|height. Lo mide mide-centrado.mjs.",
+    "toleranciaCapas": 1
+  },
+  "radios": {
+    "_": "escala = [[ladoMenorMinimo, radio], ...] para SUPERFICIES; cambia por breakpoint y eso es correcto. piezas = radio fijo, el MISMO en todos los anchos.",
+    "escala": [
+      [
+        500,
+        64
+      ],
+      [
+        300,
+        32
+      ],
+      [
+        0,
+        16
+      ]
+    ],
+    "piezas": {
+      "boton": 12,
+      "capsula": 16,
+      "ventana": 12,
+      "chip": 5
+    },
+    "exentos": [
+      "_",
+      "Selectores que NO se rigen por la escala: objetos fisicos dibujados (marco de telefono, pantalla de un hero)."
+    ]
+  },
+  "fluido": {
+    "_": "regimenDefault se aplica a las secciones que audita-regimen.mjs no clasifique como rigidas.",
+    "regimenDefault": "fluido",
+    "anchoMin": 390,
+    "anchoTope": 1440,
+    "margen": {
+      "390": 20,
+      "768": 40,
+      "1440": 80
+    }
+  },
+  "umbral": 9.9,
+  "maxIter": 6,
+  "paginasBorrador": [
+    "_pagina-en-construccion"
+  ],
+  "_paginasBorrador": "Paginas que existen en Webflow pero NO se miden ni se publican todavia. Se listan para que el harness sepa que existen y no las cuente como ausentes.",
+  "ordenPort": [
+    "pricing",
+    ""
+  ],
+  "_ordenPort": "Orden en que se portan las paginas. La seccion piloto barata y compartida primero; las paginas con pineado, al final. La home suele ir la ultima porque es la que mas comparte.",
+  "motion": {
+    "_": "Donde vive el motor de movimiento del sitio. NO se declara aqui QUE motor es (eso lo dice el sitio servido y gate-movimiento lo detecta); solo donde esta y su tope. El contrato de que se mueve va en spec/movimiento.json (plantilla: templates/movimiento.seed.json).",
+    "embeds": [
+      "SHARED / escala",
+      "SHARED / motor"
+    ],
+    "topeEmbed": 10000
+  },
+  "conmutadores": {
+    "_": "Cortes PROPIOS (no nativos de Webflow) que existen a proposito, para que conmutadores.mjs no los reporte como HIGH. Un max-width:1199 cubre tambien su min-width:1200.",
+    "declarados": [
+      1199
+    ]
+  },
+  "playbook": {
+    "_": "Orden por bandas: figma → escritorio → movil → tablet → responsividad. El estado lo escribe scripts/playbook.mjs en `archivo`. modo: \"nuevo\" exige la etapa figma aprobada; \"sitio-existente\" no, pero cada banda sigue necesitando su frame. Ver references/playbook-por-bandas.md.",
+    "modo": "nuevo",
+    "archivo": "spec/playbook-estado.json",
+    "bandas": {
+      "escritorio": 1440,
+      "tablet": 768,
+      "movil": 390
+    }
+  },
+  "pines": {
+    "_": "Escenas fijadas (pin de scroll) que mide gate-pines.mjs de responsive-webflow. `pin` = la caja que se queda fija; `escena` = lo que debe ir centrado; `pista` = el contenedor que da el recorrido (sticky) — sin ella se usa el ScrollTrigger o el padre; `anchoMax` = tope del panel (el frame); `desde` = ancho minimo al que existe (por defecto 1200); `textos`/`piezas` = selectores que no pueden salir recortados; `dentroDe` = pares [pieza, marco]. Anchos: los de responsive-out/plan-anchos.json + `anchosExtra`, a `alto` px; o `viewports` [[ancho, alto]] si se quieren los dispositivos exactos del usuario. Sin escenas el gate sale OMITIDO, no en verde.",
+    "escenas": [
+      {
+        "_": "ejemplo — borrar",
+        "ruta": "product",
+        "nombre": "pasos",
+        "escena": ".xx-pasos",
+        "pin": ".xx-pasos__fijo",
+        "anchoMax": 1440,
+        "textos": [
+          ".xx-pasos h2",
+          ".xx-pasos p"
+        ],
+        "piezas": [
+          ".xx-pasos__ventana"
+        ],
+        "dentroDe": [
+          [
+            ".xx-pasos__tecla",
+            ".xx-pasos__foto"
+          ]
+        ],
+        "pista": ".xx-pasos-track"
+      }
+    ],
+    "anchosExtra": [
+      1310,
+      1366
+    ],
+    "alto": 900,
+    "viewports": []
+  },
+  "dispositivos": [
+    {
+      "_": "OPCIONAL. Ventanas concretas donde el usuario vio algo (ancho Y alto del viewport). La cobertura NO depende de esto: responsive-webflow mide siempre su catalogo de 25 ventanas reales y estas se suman. Borrar el ejemplo.",
+      "nombre": "ejemplo — borrar",
+      "w": 1310,
+      "h": 945
+    }
+  ],
+  "hermanas": [
+    {
+      "_": "Paginas que comparten plantilla: la misma pieza tiene que medir lo mismo en todas (R5). `comparaY` incluye la posicion vertical.",
+      "nombre": "ejemplo — borrar",
+      "paginas": [
+        "servicio-a",
+        "servicio-b"
+      ],
+      "piezas": [
+        ".xx-hero__titulo"
+      ],
+      "comparaY": true,
+      "tolerancia": 2
+    }
+  ],
+  "integridad": {
+    "_": "Adjudicaciones de gate-integridad: selectores de lo que esta recortado, pisado o tapado A PROPOSITO, cada uno con su porque. No es una lista para callar el gate.",
+    "ignora": [
+      {
+        "selector": ".xx-marquesina",
+        "porque": "cinta que entra y sale de la ventana por diseno"
+      }
+    ]
+  },
+  "evaluacion": {
+    "_": "Evaluador funcional de responsive-webflow. `catalogo: false` apaga el catalogo de ventanas reales (la nota topa en 8.9). `escapes` = lo que vio una persona despues de un PASS; cada entrada acaba en un check.",
+    "umbral": 9.5,
+    "escapes": "spec/escapes.json",
+    "catalogo": true
+  }
+}

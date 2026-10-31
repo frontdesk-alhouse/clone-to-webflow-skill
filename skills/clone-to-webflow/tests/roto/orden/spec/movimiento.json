@@ -1,0 +1,6 @@
+{ "anchos": { "movil": 390, "escritorio": 1440 },
+  "paginas": { "home": { "secciones": [
+    { "id": "hero",  "sel": ".hero" },
+    { "id": "cifra", "sel": ".cifra" },
+    { "id": "faq",   "sel": ".faq" }
+  ] } } }

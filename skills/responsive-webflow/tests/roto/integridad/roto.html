@@ -1,0 +1,13 @@
+<!doctype html><html><head><meta charset="utf-8"><title>roto</title><style>
+*{box-sizing:border-box;margin:0}body{font:16px/1.4 system-ui;color:#111}
+nav{position:sticky;top:0;background:#fff;padding:16px;z-index:5}
+section{padding:80px 40px;min-height:600px}
+.btn{display:inline-block;padding:12px 20px;background:#124;color:#fff;border-radius:8px}
+
+.caja{width:300px;max-width:100%;overflow:hidden}.caja p{white-space:nowrap}.ancha{width:2100px;height:20px;background:#ccd}   /* I1: la caja le come el final al texto, y ademas I4 por debajo de 1280 */
+.pila{position:relative;height:120px}.pila h2,.pila h3{position:absolute;left:0;top:0;font-size:32px}   /* I2 */
+.tapado{position:relative;height:120px}.tapa{position:absolute;inset:0;background:rgba(0,0,0,.02)}   /* I3 */
+</style></head><body><nav><a class="btn" href="#a">Inicio</a></nav>
+<section><h1>Titulo roto</h1><div class="caja"><p>Este renglon es mucho mas ancho que su caja y la caja tiene overflow hidden, asi que el final no se ve nunca en ninguna ventana por muy ancha que sea de verdad</p></div><div class="ancha"></div></section>
+<section><div class="pila"><h2>Primer titular en su sitio</h2><h3>Segundo titular encima del primero</h3></div></section>
+<section><div class="tapado"><a class="btn" href="#y">No me puedes pulsar</a><div class="tapa"></div></div><img src="no-existe.png" width="200" height="100" alt=""></section></body></html>

@@ -1,0 +1,6 @@
+{ "cliente": "roto-discontinuidad",
+  "sitio": { "staging": "file:./pagina.html", "paginas": [""] },
+  "modo": { "regimen": "nativo" },
+  "bandas": { "movil": {"frame":390,"min":320,"max":767}, "escritorio": {"frame":1440,"min":768,"max":2560} },
+  "gates": { "toleranciaBanda": 4 },
+  "salida": "responsive-out" }

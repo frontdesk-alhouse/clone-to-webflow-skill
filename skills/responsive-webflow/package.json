@@ -1,0 +1,12 @@
+{
+  "name": "responsive-webflow",
+  "private": true,
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Auditar y planear responsividad en sitios Webflow — dos modos (unidad / nativo), un solo medidor",
+  "scripts": {
+    "selftest": "node tests/selftest.mjs",
+    "regresion": "node tests/fixture-cliente-a.mjs && node scripts/genera-unidad.mjs tests/cliente-a.medidas.json --out /tmp/rw-regresion && node tests/regresion-cliente-a.mjs"
+  },
+  "dependencies": {}
+}

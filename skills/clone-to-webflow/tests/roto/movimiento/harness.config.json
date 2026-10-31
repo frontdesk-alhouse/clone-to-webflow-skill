@@ -1,0 +1,6 @@
+{
+  "cliente": "roto-movimiento",
+  "webflow": { "staging": "file:./pagina.html", "shortName": "roto", "produccion": [] },
+  "paginas": [""],
+  "anchos": [390, 768, 1440]
+}

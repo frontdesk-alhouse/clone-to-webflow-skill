@@ -1,0 +1,58 @@
+{
+  "_": "Esquema de medidas del MODO UNIDAD. Una banda por rango de anchos; dentro, un elemento por pieza. Las medidas se toman EN EL FRAME de la banda y se escriben en px del frame: el generador las emite como calc(px * var(--u)). No se piensa en pixeles finales, se piensa en el porcentaje del ancho del display.",
+
+  "meta": {
+    "cliente": "NOMBRE",
+    "ref": {
+      "_": "pagina = el contenedor centrado. secciones = los bloques de primer nivel. Solo se usan para informar el ancho de pagina; la verificacion mide con offsetLeft/offsetTop, que es el sistema de coordenadas real de left/top.",
+      "pagina": ".page",
+      "secciones": [".hero", ".cta", ".footer"]
+    },
+    "anchosVerifica": [320, 390, 600, 768, 1024, 1200, 1440, 1849, 1920, 2560, 3840],
+    "muestra": ["h1", "lead"],
+    "salida": "responsive-out"
+  },
+
+  "bandas": {
+    "_": "min/max acotan la banda. frame es el ancho del frame de Figma del que salen las medidas. umin/umax topan la unidad; si se omiten se derivan por regla de tres (min/frame y max/frame). Declararlos a mano es lo normal: Cliente A topa movil en 1.20 en vez de 767/390=1.97 porque a partir de 468 la pagina se centra en lugar de seguir creciendo.",
+
+    "movil": {
+      "frame": 390, "min": 320, "max": 767, "umin": 0.8205, "umax": 1.2,
+      "elementos": {
+        "_": "GEOMETRIA (siempre con --u): x y w h r inset gap minh maxh minw maxw. TIPOGRAFIA (con el factor de `f`): fs lh. LITERALES: ls (em, no escala) y `css` (declaraciones tal cual). Factores: u = layout, t = display (H1/H2/lede), tb = lectura y UI (cuerpo, nav, botones, campos, legal).",
+
+        "nav": { "sel": ".nav", "x": 20, "y": 16, "w": 350, "h": 60, "r": 16 },
+        "h1": { "sel": ".h1", "x": 20, "y": 146, "w": 350, "fs": 34, "lh": 40, "ls": -0.02, "f": "t" },
+        "lead": { "sel": ".lead", "x": 20, "y": 326, "w": 350, "fs": 15, "lh": 23, "f": "t" },
+
+        "navlinks": {
+          "__": "Dos formas de no pintarse, y NO son la misma cosa. `true` = existe y se apaga aqui a proposito: emite display:none y el verificador comprueba que de verdad no se pinta. `\"heredado\"` = no se pinta porque su ancestro no se pinta, o la regla no aplica en esta banda: no emite nada y no se comprueba. Ausente no vale: hereda la caja de la banda anterior sin decirlo, y eso es lo que llega al iPad del cliente.",
+          "sel": ".nav .links", "oculto": true
+        },
+        "navlink": { "sel": ".nav .links a", "oculto": "heredado" }
+      }
+    },
+
+    "tablet": {
+      "frame": 768, "min": 768, "max": 1199,
+      "elementos": {
+        "nav": { "sel": ".nav", "x": 40, "y": 12, "w": 688, "h": 52, "r": 16 },
+        "h1": { "sel": ".h1", "x": 40, "y": 96, "w": 688, "fs": 42, "lh": 48, "ls": -0.02, "f": "t" },
+        "lead": { "sel": ".lead", "x": 84, "y": 212, "w": 600, "fs": 17, "lh": 26, "f": "t" },
+        "navlinks": { "sel": ".nav .links", "x": 148, "y": 9, "w": 343, "h": 34, "fs": 14, "f": "tb" },
+        "navlink": { "sel": ".nav .links a", "oculto": "heredado" }
+      }
+    },
+
+    "escritorio": {
+      "frame": 1440, "min": 1200, "max": 1920, "umin": 0.8333, "umax": 1.3333,
+      "elementos": {
+        "nav": { "sel": ".nav", "x": 160, "y": 16, "w": 1120, "h": 51, "r": 16 },
+        "h1": { "sel": ".h1", "x": 80, "y": 150, "w": 1280, "fs": 64, "lh": 67.84, "ls": -0.03, "f": "t" },
+        "lead": { "sel": ".lead", "x": 318, "y": 305, "w": 754, "fs": 18, "lh": 27.9, "f": "t" },
+        "navlinks": { "sel": ".nav .links", "x": 118, "y": 7, "w": 826, "h": 36, "fs": 14, "f": "tb" },
+        "navlink": { "sel": ".nav .links a", "oculto": "heredado" }
+      }
+    }
+  }
+}

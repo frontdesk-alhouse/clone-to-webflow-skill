@@ -1,0 +1,3 @@
+{ "paginas": { "home": { "secciones": [
+  { "id": "hero", "sel": "#hero", "debe": { "390": "revelado", "820": "revelado", "1440": "revelado" } }
+] } } }

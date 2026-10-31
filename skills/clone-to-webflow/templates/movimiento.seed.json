@@ -1,0 +1,54 @@
+{
+  "_lee": "Contrato de movimiento. Por pagina y por seccion: que anima, con que mecanismo, y que debe pasar en cada ancho. `es` describe lo MEDIDO hoy; `debe` es el COMPROMISO. Cuando difieren, la diferencia es deuda y esta a la vista. gate-movimiento.mjs verifica `debe` contra el sitio publicado. Copiar a spec/movimiento.json y rellenar; sin este archivo el gate no arranca.",
+  "_medido": "AAAA-MM-DD contra https://<shortName>.webflow.io",
+
+  "anchos": {
+    "_": "LOS ANCHOS DEL GATE SALEN DE AQUI, no del config. Las llaves de `es` y `debe` de cada seccion tienen que ser exactamente estos numeros como cadena. Si el gate mide un ancho para el que una seccion con `debe` no dice nada, para con exit 2: no se da verde sobre lo que no esta declarado.",
+    "movil": 390,
+    "tablet": 768,
+    "escritorio": 1440
+  },
+
+  "reglas": [
+    "Con prefers-reduced-motion la pagina no se mueve y NO se rompe: los pines se sueltan y el contenido queda visible en flujo.",
+    "Un pin que vive en el marcado de escritorio no existe en las bandas que ocultan ese marcado. Si una banda esconde la seccion donde vive el motor, el motor abandona en silencio (if (!sec.offsetHeight) return) y nada avisa: por eso este contrato se comprueba POR ANCHO.",
+    "El movimiento nunca saca un elemento fuera del marco: el gate de desborde se mide DURANTE el recorrido, no en reposo.",
+    "Solo animan opacity y transform. Animar width/height/top/left relayouta y se ve en el frame rate."
+  ],
+
+  "paginas": {
+    "home": {
+      "_aplica": ["", "otra-pagina-con-las-mismas-secciones"],
+      "secciones": [
+        {
+          "id": "hero",
+          "sel": ".xx-hero",
+          "selMovil": ".xx-m-hero",
+          "mecanismo": "pin +=200% con conmutacion de estado (que cambia y como)",
+          "es":   { "1440": "pin activo", "768": "pin activo", "390": "sin pin, revelado" },
+          "debe": { "1440": "pin",        "768": "pin",        "390": "revelado" }
+        },
+        {
+          "id": "cifra",
+          "sel": ".xx-cifra",
+          "mecanismo": "revelado escalonado al entrar en viewport",
+          "es":   { "1440": "revelado", "768": "revelado", "390": "revelado" },
+          "debe": { "1440": "revelado", "768": "revelado", "390": "revelado" }
+        },
+        {
+          "id": "faq",
+          "sel": ".xx-faq",
+          "mecanismo": "sin movimiento propio",
+          "_": "Una seccion sin `debe` solo se observa: el gate reporta mov(n) o — y nunca falla por ella. Es la forma correcta de declarar que algo NO debe animar sin que el gate lo cobre."
+        }
+      ]
+    }
+  },
+
+  "_vocabulario_debe": {
+    "pin": "la seccion esta fijada por el motor de scroll (se detecta via ScrollTrigger)",
+    "revelado": "al menos un elemento cambia transform u opacity al entrar",
+    "escalonado": "como revelado, con retardo por elemento",
+    "(ausente)": "sin compromiso: se observa, no se cobra"
+  }
+}
